@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Home.css";
 import { useSelector } from "react-redux";
-// import { Card } from "react-bootstrap";
+
 
 const Home = () => {
   const state = useSelector((state) => state.userReducer);

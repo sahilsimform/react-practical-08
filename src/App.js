@@ -9,7 +9,6 @@ function App() {
   const state = useSelector((state) => state.userReducer);
   let redirectToUrl;
   if (state.user === null) {
-    //check condition
     redirectToUrl = <Redirect to="/" />;
   }
 

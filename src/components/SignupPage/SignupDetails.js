@@ -8,7 +8,6 @@ import "./Signup.css";
 import { registerUser } from "../Redux/Actions/Actions";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-// import PreviewImage from "./PreviewImage";
 
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
@@ -71,9 +70,6 @@ const SignupDetails = ({ signUp }) => {
     <Formik
       validationSchema={validate}
       initialValues={initialValues}
-      // onSubmit={(values) => {
-      //   onSubmitSend(values);
-      // }}
       onSubmit={onSubmitSend}
     >
       {({ values, setFieldValue }) => (
@@ -94,7 +90,7 @@ const SignupDetails = ({ signUp }) => {
                           setFieldValue("file", event.target.files[0]);
                         }}
                       />
-                      {/* {values.file && <PreviewImage file={values.file} />} */}
+
                       <button
                         className="Upload-btn"
                         onClick={() => {
