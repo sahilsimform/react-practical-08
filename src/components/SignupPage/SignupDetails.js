@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import "yup-phone";
 import "./Signup.css";
 
-import { registerUser } from "../Redux/Actions/Actions";
+import { signupUser } from "../Redux/Actions/Actions";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -62,7 +62,7 @@ const SignupDetails = ({ signUp }) => {
   });
   const onSubmitSend = (values, props) => {
     console.log(values);
-    dispatch(registerUser(values));
+    dispatch(signupUser(values));
     history.push("/home", { state: values.file });
   };
 

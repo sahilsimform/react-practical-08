@@ -3,10 +3,8 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-// import Home from "../HomePage/Home";
+
 import { logoutUser } from "../Redux/Actions/Actions";
-// import Signup from "../SignupPage/Signup";
 import "./NavBar.css";
 
 const NavBar = () => {
@@ -31,9 +29,6 @@ const NavBar = () => {
                 <Nav.Link></Nav.Link>
               </Nav>
               <Nav>
-                {/* <Nav.Link as={Link} to={"/home"}>
-                  Home
-                </Nav.Link> */}
                 {user ? (
                   <Nav.Link
                     onClick={() => {

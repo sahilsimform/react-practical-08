@@ -4,7 +4,7 @@ const initialState = {
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "REGISTER_USER":
+    case "SIGNUP_USER":
       return {
         user: action.payload,
       };

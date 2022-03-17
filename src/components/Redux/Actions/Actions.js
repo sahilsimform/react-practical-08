@@ -1,6 +1,6 @@
-export const registerUser = (data) => {
+export const signupUser = (data) => {
   return {
-    type: "REGISTER_USER",
+    type: "SIGNUP_USER",
     payload: data,
   };
 };
