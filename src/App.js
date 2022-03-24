@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import { Route, Switch, Redirect } from "react-router-dom";
+import "./App.css";
+import Home from "./components/HomePage/Home";
+import NavBar from "./components/NavBar/NavBar";
+import Signup from "./components/SignupPage/Signup";
 
 function App() {
+  const state = useSelector((state) => state.userReducer);
+  let redirectToUrl;
+  if (state.user === null) {
+    redirectToUrl = <Redirect to="/" />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar />
+      {redirectToUrl}
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/signup" />
+        </Route>
+        {state.user && <Route exact path="/home" component={Home} />}
+        <Route path="/signup">
+          <Signup />
+        </Route>
+      </Switch>
     </div>
   );
 }
