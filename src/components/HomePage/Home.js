@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import "./Home.css";
 import { useSelector } from "react-redux";
 
-
 const Home = () => {
   const state = useSelector((state) => state.userReducer);
   const { user } = state;
   const [preview, setPreview] = useState(null);
   const reader = new FileReader();
-  reader.readAsDataURL(user.file);
+  reader.readAsDataURL(user.image);
   reader.onload = () => {
     setPreview(reader.result);
   };

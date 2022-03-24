@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import TextField from "./TextField";
 import * as Yup from "yup";
 import "yup-phone";
@@ -8,6 +8,7 @@ import "./Signup.css";
 import { signupUser } from "../Redux/Actions/Actions";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import ErrorMessages from "./ErrorMessages";
 
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
@@ -22,7 +23,7 @@ const SignupDetails = ({ signUp }) => {
     phoneNo: "",
     password: "",
     confirmPassword: "",
-    file: null,
+    image: null,
   };
 
   const validate = Yup.object().shape({
@@ -46,7 +47,7 @@ const SignupDetails = ({ signUp }) => {
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Confirm password is Required"),
-    file: Yup.mixed()
+    image: Yup.mixed()
       .nullable()
       .required("Photo is Required")
       .test(
@@ -83,43 +84,44 @@ const SignupDetails = ({ signUp }) => {
                   return (
                     <>
                       <input
-                        ref={fileRef}
-                        hidden
                         type="file"
+                        hidden
+                        ref={fileRef}
                         onChange={(event) => {
-                          setFieldValue("file", event.target.files[0]);
+                          setFieldValue("image", event.target.files[0]);
                         }}
                       />
 
-                      <button
-                        className="Upload-btn"
-                        onClick={() => {
-                          fileRef.current.click();
-                        }}
-                      >
-                        Photo +
-                      </button>
+                      <div className="Upload-btn">
+                        <p
+                          onClick={() => {
+                            fileRef.current.click();
+                          }}
+                        >
+                          Photo +
+                        </p>
+                        <ErrorMessages name="image" />
+                      </div>
                       <br />
-                      <ErrorMessage
-                        component="div"
-                        name="file"
-                        className="text-danger "
-                        style={{ fontSize: "12px", marginLeft: "130px" }}
-                      />
                     </>
                   );
                 }}
               </Field>
             </div>
             <TextField label="Name" name="name" type="text" />
+            <ErrorMessages name="name" />
             <TextField label="Email" name="email" type="text" />
+            <ErrorMessages name="email" />
             <TextField label="Phone No" name="phoneNo" type="number" />
+            <ErrorMessages name="phoneNo" />
             <TextField label="Password" name="password" type="password" />
+            <ErrorMessages name="password" />
             <TextField
               label="Confirm Password"
               name="confirmPassword"
               type="password"
             />
+            <ErrorMessages name="confirmPassword" />
             <button className="btn btn-primary mt-3" type="submit">
               Submit
             </button>
